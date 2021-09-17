@@ -1,0 +1,8 @@
+ion-title{
+    text-align: center;
+}
+
+ion-card-content{
+    justify-content: center;
+    padding-left: 500px;
+}

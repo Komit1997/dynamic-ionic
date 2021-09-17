@@ -1,0 +1,99 @@
+{
+    "FormJSon":[
+ {
+    "key":"email",
+    "type":"input",
+    "options":{
+        "label":" Your best email",
+        "placeholder":"Enter email address",
+        "required" :true
+    }
+ },
+  { 
+    "key":"password",
+    "type":"input",
+    "options":{
+        "label":" Minimum 6 characters",
+        "placeholder":"Enter password",
+        "required" :true,
+        "type" :"password"
+    }
+    
+  },
+  {
+    "key":"newsletter",
+    "type":"boolean",
+    "options":{
+        "label":" subscribe to our newsletter"
+    }
+  },
+  {
+      "key" :"birthday",
+      "type":"date",
+      "options":{
+          "label":"your birhday"
+      }
+  },
+ {
+    "key" :"notes",
+    "type":"text",
+    "options":{
+        "label":"Additional notes for us"
+    }
+},
+{
+
+"key":"address",
+    "type":"group",
+    "options":{
+        "children":[{
+                "key":"name",
+                "type":"input",
+                "options":{
+                    "label":" full name",
+                    "placeholder":"Enter address",
+                    "required" :true
+                }
+             },
+            
+       {
+
+            "key":"street",
+            "type":"input",
+            "options":{
+                "label":" Street",
+                "placeholder":""
+                
+            }
+        
+         }
+        ]
+        
+    }
+},
+{
+    "key":"phone ",
+    "type":"array",
+    "options":{
+        "children":[{
+                "key":"phoneNumber",
+                "type":"input",
+                "options":{
+                    "label":" phone no.",
+                    "placeholder":"1234567890"
+            }
+    },
+
+    {
+        "key":"age",
+                "type":"input",
+                "options":{
+                    "label":" my age",
+                    "placeholder":"12"
+            }
+    }
+] }
+}
+
+]
+}

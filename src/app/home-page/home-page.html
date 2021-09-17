@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            Dynamic Form
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size=4>
+    <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+        <ion-item *ngFor="let c of simpleForm">
+            <ion-label position="stacked">
+                {{c.options.label}}
+            </ion-label>
+            <div [ngSwitch]="c.type">
+                <ion-input *ngSwitchCase="'input'" [type]="c.options.type ? c.options.type :'text'" [formControlName]="c.key" [placeholder]="c.options.placeholder"></ion-input>
+                <ion-textarea *ngSwitchCase="'text'" rows="3" [formControlName]="c.key"></ion-textarea>
+                <ion-datetime *ngSwitchCase="'date'" [formControlName]="c.key"></ion-datetime>
+                <ion-toggle *ngSwitchCase="'boolean'" [formControlName]="c.key"></ion-toggle>
+           <div *ngSwitchCase="'group'" [formGroupName]="c.key">
+               <ion-item *ngFor="let child of c.options.children">
+                   <ion-label position="stacked">{{child.options.label}}</ion-label>
+                   <ion-input [formControlName]="child.key" [placeholder]="child.options.placeholder"></ion-input>
+               </ion-item>
+           </div>
+           <div *ngSwitchCase="'array'" [formArrayName]="c.key">
+                 <div *ngFor="let group of getFormarray(c.key).controls; let i = index ">
+                     <ion-item-group [formGroupName]="i">
+                         <ion-item-divider>
+                             <ion-label>
+                            {{c.key}} {{i+1}}
+                           </ion-label>
+                    </ion-item-divider>
+                    <ion-item *ngFor="let child of c.options.children">
+                        <ion-label position="stacked">{{child.options.label}}</ion-label>
+                        <ion-input [formControlName]="child.key" [placeholder]="child.options.placeholder"></ion-input>
+                    </ion-item>
+
+
+                    <ion-button expand="full" color="danger" fill="clear"  (click)="removeArrayGroup(c.key, i)">
+                        <ion-icon name="trash"></ion-icon>
+                    </ion-button>
+                     </ion-item-group> 
+                 </div>           
+              <ion-button expand="full" color="danger" fill="clear"  (click)="addArrayGroup(c.key, c.options.children)">
+                  Add Group
+              </ion-button>
+           </div>
+           
+            </div>
+
+        </ion-item>
+
+        <ion-button type="submit" expnad="block" [disabled]="!myForm.value">Submit</ion-button>
+    </form>
+   </ion-col>
+    </ion-row>
+</ion-grid>
+</ion-content>
